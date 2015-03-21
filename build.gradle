@@ -1,0 +1,20 @@
+apply plugin: 'maven'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'wrapper'
+
+repositories {
+   jcenter()
+   mavenCentral()
+}
+
+dependencies {
+   testCompile group: 'junit', name: 'junit', version: '4.+'
+
+   compile group: 'de.aaschmid.gradle.plugins', name: 'gradle-cpd-plugin', version: '+'
+   compile gradleApi()
+   compile localGroovy()
+
+   // Provided scope import for compile time only, if this works push up to gradlecore
+   runtime group: 'net.sourceforge.findbugs', name:'annotations', version:'1+'
+}
