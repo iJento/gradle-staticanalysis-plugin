@@ -1,6 +1,8 @@
 # Gradle StaticAnalysis Plugin
 Plugin to add static analysis tools and tasks to Gradle builds. Gradle has a number of fantastic static analysis tools however none of them have single run tasks to perform all tasks in that analysis set and there is no way to run all static analysis without also executing all the tests (using `gradle check`). This plugin solves this issue. The plugin also adds a task to convert all checkstyle XML files to HTML format to allow easier viewing. 
 
+[![Build Status](https://travis-ci.org/iJento/gradle-staticanalysis-plugin.svg?branch=master)](https://travis-ci.org/iJento/gradle-staticanalysis-plugin)
+
 
 ## Contributors
 * [Ollie Freeman](https://github.com/olliefreeman)
