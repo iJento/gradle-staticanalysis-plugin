@@ -1,14 +1,15 @@
-package com.github.ijento.gradle.staticanalysis.tasks
+package com.github.ijento.gradle.staticanalysis.internal
 
-import org.gradle.api.DomainObjectCollection
+import org.gradle.api.NamedDomainObjectSet
 import org.gradle.api.Task
 import org.gradle.api.reporting.SingleFileReport
-import org.gradle.api.reporting.internal.TaskGeneratedSingleDirectoryReport
 import org.gradle.api.reporting.internal.TaskGeneratedSingleFileReport
 import org.gradle.api.reporting.internal.TaskReportContainer
 
 /**
- * @author: Ollie
+ * Implementation of the Html Reports container.
+ *
+ * @author: Ollie Freeman
  * @date: 21/03/15
  */
 class HtmlReportsImpl extends TaskReportContainer<TaskGeneratedSingleFileReport> implements HtmlReportsContainer {

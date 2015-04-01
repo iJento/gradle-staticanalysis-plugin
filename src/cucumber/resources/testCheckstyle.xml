@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.4.1">
+<file name="test1.java">
+</file>
+<file name="test2.java">
+<error line="6" severity="warning" message="Wrong lexicographical order for &apos;java.time.format.DateTimeFormatter&apos; import." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+</file>
+<file name="test3.java">
+</file>
+<file name="test4.java">
+<error line="15" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck"/>
+</file>
+<file name="test5.java">
+<error line="8" severity="warning" message="Wrong lexicographical order for &apos;org.apache.curator.framework.CuratorFramework&apos; import." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+</file>
+<file name="test6.java">
+<error line="10" severity="warning" message="Wrong lexicographical order for &apos;org.junit.runner.RunWith&apos; import." source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
+<error line="17" severity="warning" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck"/>
+</file>
+</checkstyle>

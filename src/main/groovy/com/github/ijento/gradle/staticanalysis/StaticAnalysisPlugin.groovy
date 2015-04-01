@@ -10,12 +10,12 @@ import org.gradle.api.reporting.Reporting
 import org.gradle.logging.ConsoleRenderer
 
 /**
- * @author: Ollie Freeman
- * @date: 19/03/15
- *
  * The static analysis tools do not generate 1 task which can be run from gradle but 1 per sourceset, these tasks
  * add the ability to run all of the individual SA tools in one go without running the others.
  * We can also have the checkstyle task performing the html conversion rather than the check task.
+ *
+ * @author: Ollie Freeman
+ * @date: 19/03/15
  */
 public class StaticAnalysisPlugin implements Plugin<Project> {
 
