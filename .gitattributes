@@ -1,0 +1,29 @@
+core.eol=lf
+
+# All text base files
+*.bat text eol=crlf
+*.gitattributes text
+*.gitignore text
+*.gitmodules text
+*.gradle text
+*.groovy text
+*.html text
+*.iml text
+*.ipr text
+*.iws text
+*.java text
+*.json text
+*.jsp text
+*.properties text
+*.sh text
+*.xml text
+*.xsd text
+*.xsl text
+
+# Binaries
+*.bin binary
+*.class binary
+*.exe binary
+*.gz binary
+*.jar binary
+*.zip binary

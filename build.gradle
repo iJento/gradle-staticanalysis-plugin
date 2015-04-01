@@ -1,20 +1,115 @@
+buildscript {
+   repositories {
+      jcenter()
+      mavenCentral()
+   }
+
+
+   dependencies {
+      classpath group: 'com.github.samueltbrown', name: 'gradle-cucumber-plugin', version: '+'
+   }
+}
+
+
 apply plugin: 'maven'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'wrapper'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.samueltbrown.cucumber'
+
+
+
+wrapper {
+   gradleVersion = 2.3
+}
+
+sourceCompatibility = 1.8
+
+configurations {
+   provided
+}
+
+sourceSets {
+   main {
+      compileClasspath += configurations.provided
+      runtimeClasspath += configurations.provided
+   }
+   test {
+      compileClasspath += configurations.provided
+      runtimeClasspath += configurations.provided
+   }
+   cucumber {
+      compileClasspath += configurations.provided
+      runtimeClasspath += configurations.provided
+   }
+}
 
 repositories {
    jcenter()
-   mavenCentral()
 }
 
 dependencies {
-   testCompile group: 'junit', name: 'junit', version: '4.+'
-
    compile group: 'de.aaschmid.gradle.plugins', name: 'gradle-cpd-plugin', version: '+'
-   compile gradleApi()
-   compile localGroovy()
+   compile 'net.sourceforge.pmd:pmd-core:5.+'
 
    // Provided scope import for compile time only, if this works push up to gradlecore
    runtime group: 'net.sourceforge.findbugs', name:'annotations', version:'1+'
+
+   provided gradleApi()
+   provided localGroovy()
+   provided group: 'javax.inject', name:'javax.inject', version:'1'
+
+   cucumberCompile group: 'info.cukes', name:'cucumber-junit', version:'1.+'
+   cucumberCompile group: 'info.cukes', name:'cucumber-groovy', version:'1.+'
 }
+
+javadoc {
+   classpath += configurations.provided
+   failOnError false
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+   group 'build'
+   classifier = 'sources'
+   from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+   group 'build'
+   classifier = 'javadoc'
+   from javadoc.destinationDir
+}
+
+/**
+ * Add jars as artifacts, this will cause them to be built as part of assemble and will automatically be
+ * included as part of the publishing mechanism
+ */
+artifacts {
+   archives sourcesJar
+   archives javadocJar
+}
+test {
+   ignoreFailures = true
+}
+
+jacoco {
+   toolVersion = '+'
+}
+
+idea{
+   project {
+      languageLevel = '1.8'
+   }
+   module {
+      //if you love browsing Javadoc
+      downloadJavadoc = true
+
+      //and hate reading sources :)
+      downloadSources = false
+
+      scopes.PROVIDED.plus += [ configurations.provided ]
+   }
+}
+
+tasks.test.dependsOn tasks.cucumber
