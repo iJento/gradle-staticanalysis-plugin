@@ -3,7 +3,7 @@ Plugin to add static analysis tools and tasks to Gradle builds. Gradle has a num
 
 [![Build Status](https://travis-ci.org/iJento/gradle-staticanalysis-plugin.svg?branch=master)](https://travis-ci.org/iJento/gradle-staticanalysis-plugin)
 [![Snapshot](http://img.shields.io/badge/current-0.1--SNAPSHOT-blue.svg)](https://github.com/iJento/gradle-staticanalysis-plugin/tree/master)
-[![License](http://img.shields.io/badge/license-Apache_License_v2-blue.svg)](#copyright-and-license)
+[![License](http://img.shields.io/badge/license-Apache_License_v2-lightgrey.svg)](#copyright-and-license)
 
 
 ## Contributors
