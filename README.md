@@ -97,4 +97,4 @@ Due to the configuration options all tasks are added in the root project `afterE
 You are welcome to contribute to this project, please fork the repository, create a branch for your feature and then submit a pull request.
 
 ## Copyright and License
-All versions of the gradle-staticanalysis-plugin are published under the [GNU Public License](https://github.com/iJento/gradle-staticanalysis-plugin/blob/master/LICENSE)
+All versions of the gradle-staticanalysis-plugin are published under the [Apache License v2](https://github.com/iJento/gradle-staticanalysis-plugin/blob/master/LICENSE)
