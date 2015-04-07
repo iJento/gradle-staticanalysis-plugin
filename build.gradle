@@ -7,17 +7,19 @@ buildscript {
 
    dependencies {
       classpath group: 'com.github.samueltbrown', name: 'gradle-cucumber-plugin', version: '+'
+      classpath group: 'com.jfrog.bintray.gradle', name:'gradle-bintray-plugin', version:'+'
    }
 }
 
 
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'wrapper'
 apply plugin: 'jacoco'
 apply plugin: 'com.github.samueltbrown.cucumber'
-
+apply plugin: 'com.jfrog.bintray'
 
 
 wrapper {
@@ -113,3 +115,35 @@ idea{
 }
 
 tasks.test.dependsOn tasks.cucumber
+
+publishing {
+   publications {
+      mavenJava(MavenPublication) {
+         from components.java
+
+         artifact sourcesJar {
+            classifier 'sources'
+         }
+
+         artifact javadocJar {
+            classifier 'javadoc'
+         }
+      }
+   }
+}
+
+bintray {
+   user = bintrayUser
+   key = bintrayApiKey
+   //dryRun = true
+   publications = ['mavenJava']
+   pkg {
+      repo = 'maven'
+      userOrg = 'ijento'
+      name = 'gradle-staticanalysis-plugin'
+      desc = 'A Gradle plugin to add static analysis to a project and sub projects'
+      licenses = ['MIT']
+      labels = ['gradle','staticAnalysis','verification','acceptance']
+      version.attributes = ['gradle-plugin' : 'com.github.ijento.staticAnalsysis:gradle-staticanalysis-plugin']
+   }
+}
