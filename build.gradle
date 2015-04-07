@@ -13,7 +13,6 @@ buildscript {
 
 
 apply plugin: 'maven'
-apply plugin: 'maven-publish'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'wrapper'
@@ -26,10 +25,9 @@ wrapper {
    gradleVersion = 2.3
 }
 
-sourceCompatibility = 1.8
-
 configurations {
    provided
+   published
 }
 
 sourceSets {
@@ -88,8 +86,8 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
  * included as part of the publishing mechanism
  */
 artifacts {
-   archives sourcesJar
-   archives javadocJar
+   published sourcesJar
+   published javadocJar
 }
 test {
    ignoreFailures = true
@@ -101,7 +99,7 @@ jacoco {
 
 idea{
    project {
-      languageLevel = '1.8'
+      languageLevel = '1.7'
    }
    module {
       //if you love browsing Javadoc
@@ -116,34 +114,26 @@ idea{
 
 tasks.test.dependsOn tasks.cucumber
 
-publishing {
-   publications {
-      mavenJava(MavenPublication) {
-         from components.java
-
-         artifact sourcesJar {
-            classifier 'sources'
-         }
-
-         artifact javadocJar {
-            classifier 'javadoc'
-         }
-      }
-   }
-}
-
 bintray {
    user = bintrayUser
    key = bintrayApiKey
-   //dryRun = true
-   publications = ['mavenJava']
+   dryRun = project.hasProperty('dryRun')
+   publish = true
+   configurations = ['published','archives']
    pkg {
       repo = 'maven'
       userOrg = 'ijento'
       name = 'gradle-staticanalysis-plugin'
       desc = 'A Gradle plugin to add static analysis to a project and sub projects'
-      licenses = ['MIT']
+      licenses = ['Apache-2.0']
       labels = ['gradle','staticAnalysis','verification','acceptance']
-      version.attributes = ['gradle-plugin' : 'com.github.ijento.staticAnalsysis:gradle-staticanalysis-plugin']
+      websiteUrl = 'https://github.com/iJento/gradle-staticanalysis-plugin'
+      issueTrackerUrl = 'https://github.com/iJento/gradle-staticanalysis-plugin/issues'
+      vcsUrl = 'https://github.com/iJento/gradle-staticanalysis-plugin.git'
+      version{
+         attributes = ['gradle-plugin' : 'com.github.ijento.staticAnalsysis:gradle-staticanalysis-plugin']
+         vcsTag = "v$version"
+      }
    }
 }
+
