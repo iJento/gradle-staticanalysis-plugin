@@ -117,7 +117,7 @@ tasks.test.dependsOn tasks.cucumber
 bintray {
    user = bintrayUser
    key = bintrayApiKey
-   dryRun = project.hasProperty('dryRun')
+   dryRun = true
    publish = true
    configurations = ['published','archives']
    pkg {
