@@ -80,7 +80,8 @@ public class StaticAnalysisPlugin implements Plugin<Project> {
             }
 
             pluginProject.subprojects {
-                applyAnalysisTasks(it, pluginProject, pluginProject.staticAnalysis)
+                if(! pluginProject.staticAnalysis.ignoreProjects.contains(it.name))
+                    applyAnalysisTasks(it, pluginProject, pluginProject.staticAnalysis)
             }
 
         }

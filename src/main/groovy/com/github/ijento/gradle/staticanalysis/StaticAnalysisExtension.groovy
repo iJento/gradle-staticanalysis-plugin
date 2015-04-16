@@ -86,6 +86,11 @@ class StaticAnalysisExtension {
     File baseReportingDir
 
     /**
+     * List of project names to ignore when adding static analysis
+     */
+    List ignoreProjects = []
+
+    /**
      * Closure to pass to checkstyle configuration
      */
     Closure checkstyleOverrides
